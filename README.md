@@ -43,6 +43,7 @@ Welcome to the Dining Review App! This is a Spring Boot-based web application th
 4. **Access the Application**
     - User Interface: `http://localhost:8080`
     - Admin Dashboard: `http://localhost:8080/adminDashboard.html`
+    - H2 username/password is empty. just hit connect.
 
 ## Usage
 
