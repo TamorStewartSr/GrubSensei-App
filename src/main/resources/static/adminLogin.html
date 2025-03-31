@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="styles/adminLogin.css">
+    <script defer src="scripts/admin.js"></script>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Admin Login</h2>
+
+    <label for="username"></label>
+    <input type="text" id="username" placeholder="Username">
+
+    <label for="password"></label>
+    <input type="password" id="password" placeholder="Password">
+
+    <button id="signInButton">Sign In</button>
+    <button class="home-btn" onclick="home()">Home</button>
+</div>
+
+<script>
+    //Attach the login function after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        const loginButton = document.getElementById('signInButton');
+        if (loginButton) {
+            loginButton.addEventListener('click', handleAdminLogin);
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+body {
+    background-color: #add8e6; /* Light blue background */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+h1 {
+    color: #2A52BE; /* Dark blue */
+    margin-top: 20px;
+    text-align: center;
+}
+
+#userForm {
+    margin: 20px auto;
+    padding: 20px;
+    width: 40%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input[type="text"] {
+    width: 70%; /* Input width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#city {
+    width: 40%; /* Reduce width */
+    min-width: 80px; /* Set a minimum width */
+}
+
+#state {
+    width: 30%; /* Reduce width */
+    min-width: 80px; /* Set a minimum width */
+}
+
+#zipCode {
+    width: 30%; /* Reduce width */
+    min-width: 80px; /* Set a minum width */
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2A52BE; /* Dark blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #00509e; /* Slightly lighter blue */
+}

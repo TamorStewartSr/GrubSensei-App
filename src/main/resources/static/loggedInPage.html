@@ -1,0 +1,78 @@
+<!-- TODO [] connect the MY Account button to it function -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Allergy Reviews</title>
+    <link rel="stylesheet" href="styles/indexAndLogged.css">
+    <script defer src="scripts/reviewUser.js"></script>
+    <script defer src="scripts/restaurant.js"></script>
+    <script defer src="scripts/userAccountPage.js"></script>
+    <!-- Tamor finish this Sign In and Sign Up Section. Its isn't working correctly 12/31/24 -->
+     
+</head>
+<body>
+<!-- Sign In and Sign Up Section -->
+<div class="auth-container">
+    <!-- Welcome Message -->
+    <h2>Welcome, <span id="userDisplay"></span>!</h2>
+
+
+    <!-- Button for sign out -->
+    <div class="button-container">
+        <button id="signOutButton">Sign Out</button>
+        <button onclick="window.location.href='userAccountPage.html'">My Account</button>
+    </div>
+</div>
+
+<div class="logo">RAR<span>🥛🥜🥚</span></div>
+<div class="description">Restaurant Allergy Reviews</div>
+
+<!-- Search Button -->
+<div class="search-container">
+    <!-- Search Type Dropdown -->
+    <select id="searchType" class="search-dropdown" onchange="updateSearchUI()">
+        <option value="">Select Search Method</option>
+        <option value="searchByName">Search by Name</option>
+        <option value="searchByNameAndZipCode">Search by Name & Zip Code</option>
+        <option value="searchByZipCodeAndPeanut">Search by Zip Code & Peanut Score</option>
+        <option value="searchByZipCodeAndDairy">Search by Zip Code & Dairy Score</option>
+        <option value="searchByZipCodeAndEgg">Search by Zip Code & Egg Score</option>
+    </select>
+
+    <!-- Dynamic Input Box -->
+    <div class="search-box">
+        <input type="text" id="searchInput1" placeholder="Enter value" style="display: none;">
+        <input type="text" id="searchInput2" placeholder="Enter second value" style="display: none;">
+        
+        <!-- Search Button -->
+        <button id="searchButton" class="search-button" style="display: none;" onclick="performSearch()">Search</button>
+    </div>
+</div>
+
+<!-- Add Review Button -->
+<a href="addRestaurant.html">
+    <button class="button add">Add a new Restaurant ➕</button>
+</a>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = localStorage.getItem('loggedInUser');
+        if (username) {
+            document.getElementById('userDisplay').textContent = username;
+        } else {
+            document.getElementById('userDisplay').textContent = 'Guest';
+        }
+
+        // Sign Out button clears username and redirects to index.html
+        document.getElementById('signOutButton').addEventListener('click', () => {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = 'index.html';
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

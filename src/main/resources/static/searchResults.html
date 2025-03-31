@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <script defer src="scripts/restaurant.js"></script>
+    <link rel="stylesheet" href="styles/searchResults.css">
+</head>
+<body>
+<h2>Search Results</h2>
+
+<!-- Display the search query (restaurant name) -->
+<p id="searchQuery"></p>
+
+<div class="results-container" id="resultsContainer">
+    <p>Loading results...</p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const resultsContainer = document.getElementById('resultsContainer');
+
+        // Retrieve the restaurant name and results from localStorage
+        const restaurantName = localStorage.getItem('restaurantName');
+        const resultString = localStorage.getItem('restaurantResults');
+
+        if (!restaurantName) {
+            resultsContainer.innerHTML = '<p>No search query provided.</p>';
+        } else if (resultString) {
+            const results = JSON.parse(resultString);
+
+            // Display the search query (restaurant name)
+            document.getElementById('searchQuery').textContent = `Search Results for: ${restaurantName}`;
+
+            // Display the search results
+            if (results.length > 0) {
+                resultsContainer.innerHTML = results.map(result => `
+                    <ul class="restaurant-list">
+                        <li><strong>Name:</strong> ${result.name}</li>
+                        <li><strong>Address:</strong> ${result.address}, ${result.city}, ${result.state} ${result.zipCode}</li>
+                        <li><strong>Website:</strong> <a href="${result.website}" target="_blank">${result.website}</a></li>
+                        <li><strong>Phone Number:</strong> ${result.phoneNumber}</li>
+                        <li><strong>⭐️Overall Score = </strong> <span class="big-score">${result.overallScore}</span></li>
+                        <li><strong>🥜Peanut Score = </strong> ${result.peanutScore}</li>
+                        <li><strong>🥚Egg Score = </strong> ${result.eggScore}</li>
+                        <li><strong>🥛Dairy Score = </strong> ${result.dairyScore}</li>
+                        <button onclick="viewReviews(${result.id})">View Reviews</button> 
+                    </ul>
+                `).join('');
+            } else {
+                resultsContainer.innerHTML = '<p>No restaurants found matching your query.</p>';
+            }
+        } else {
+            resultsContainer.innerHTML = '<p>No search results available.</p>';
+        }
+    });
+    function viewReviews(restaurantId) {  
+        // Store restaurant ID in localStorage
+        localStorage.setItem('selectedRestaurantId', restaurantId);
+
+        // Redirect to the reviews page
+        window.location.href = `viewReviews.html?restaurantId=${restaurantId}`;
+    }
+</script>
+</body>
+</html>

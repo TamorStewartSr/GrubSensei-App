@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Allergy Reviews</title>
+    <link rel="stylesheet" href="styles/indexAndLogged.css">
+    <script defer src="scripts/restaurant.js"></script>
+    <script defer src="scripts/reviewUser.js"></script>
+</head>
+<body>
+<!-- Admin Login button -->
+<a href="adminLogin.html">
+    <button class="btn" id="adminLoginButton">Admin Login</button>
+</a>
+
+<!-- login and Sign Up Section -->
+<div class="auth-container">
+    <!-- Username and Password Inputs -->
+    <label>
+        <input type="text" id="displayName" placeholder="Username">
+    </label>
+    <label>
+        <input type="password" id="password" placeholder="Password">
+    </label>
+
+    <!-- Buttons for Login and Sign Up -->
+    <div class="button-container">
+        <!-- login redirects to loggedInPage.html -->
+        <button id="loginButton">Log In</button>
+
+        <!-- Sign Up redirects to addUserPage.html -->
+        <a href="addUserPage.html">
+            <button>Sign Up</button>
+        </a>
+    </div>
+</div>
+
+<div class="logo">RAR<span>🥛🥜🥚</span></div>
+<div class="description">Restaurant Allergy Reviews</div>
+
+<!-- Test function -->
+<div class="search-container">
+    <!-- Search Type Dropdown -->
+    <select id="searchType" class="search-dropdown" onchange="updateSearchUI()">
+        <option value="">Select Search Method</option>
+        <option value="searchByName">Search by Name</option>
+        <option value="searchByNameAndZipCode">Search by Name & Zip Code</option>
+        <option value="searchByZipCodeAndPeanut">Search by Zip Code & Peanut Score</option>
+        <option value="searchByZipCodeAndDairy">Search by Zip Code & Dairy Score</option>
+        <option value="searchByZipCodeAndEgg">Search by Zip Code & Egg Score</option>
+    </select>
+
+    <!-- Dynamic Input Box -->
+    <div class="search-box">
+        <input type="text" id="searchInput1" placeholder="Enter value" style="display: none;">
+        <input type="text" id="searchInput2" placeholder="Enter second value" style="display: none;">
+        
+        <!-- Search Button -->
+        <button id="searchButton" class="search-button" style="display: none;" onclick="performSearch()">Search</button>
+    </div>
+</div>
+
+<!--Use the login function from reviewUser.js-->
+<script>
+    document.getElementById('loginButton').addEventListener('click', () => {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username && password) {
+            login(username, password);
+        } else {
+            alert('Please fill in both fields.');
+        }
+    });
+</script>
+</body>
+</html>

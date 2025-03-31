@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+    <link rel="stylesheet" href="styles/addReview.css">
+    <script defer src= "scripts/diningReview.js"></script>
+</head>
+<body>
+<div class="logo">RAR<span>🥛🥜🥚</span></div>
+<div class="description">Add a Review</div>
+
+<div class="form-container">
+    <!-- Left-aligned inputs for Restaurant Name and Reviewer's Name -->
+    <div class="left-align-container">
+        <label for="restaurantName">Restaurant Name:</label>
+        <input id="restaurantName" type="text" placeholder="Enter the restaurant name" readonly>
+
+        <label for="restaurantId">Restaurant ID:</label>
+        <input id="restaurantId" type="text" placeholder="Enter the restaurant ID" readonly>
+
+
+        <label for="submittedBy">Reviewer's Name:</label>
+        <input id="submittedBy" type="text" placeholder="Enter your name" readonly>
+    </div>
+
+    <div class="rating-title" style="font-weight: bold;">Comment: PROFANITY = Rejection 👎</div>
+    <label for="comment"></label><textarea id="comment" placeholder="Write your review here..."></textarea><br>
+
+
+    <!-- Allergy Ratings Title -->
+    <div class="rating-title">Allergy Ratings (0.00 - 5.00): Higher ratings indicate better tolerance, while lower ratings indicate worse reactions:</div>
+
+    <div class="rating-container">
+        <label for="peanutRating">Peanut Allergy Rating:</label>
+        <input id="peanutRating" type="number" step="0.01" min="0.00" max="5.00" placeholder="0.00">
+    </div>
+
+    <div class="rating-container">
+        <label for="eggRating">Egg Allergy Rating:</label>
+        <input id="eggRating" type="number" step="0.01" min="0.00" max="5.00" placeholder="0.00">
+    </div>
+
+    <div class="rating-container">
+        <label for="dairyRating">Dairy Allergy Rating:</label>
+        <input id="dairyRating" type="number" step="0.01" min="0.00" max="5.00" placeholder="0.00">
+    </div>
+
+    <button onclick="handleAddReview()">Submit</button>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const username = localStorage.getItem('loggedInUser');
+        if (username) {
+            document.getElementById('submittedBy').value = username;
+        }
+
+        const storedRestaurant = localStorage.getItem('restaurantName');
+        if (storedRestaurant) {
+            document.getElementById('restaurantName').value = storedRestaurant;
+        }
+
+        const storedRestaurantId = localStorage.getItem('restaurantId');
+        if (storedRestaurantId) {
+            document.getElementById('restaurantId').value = storedRestaurantId;
+        }
+    });
+</script>
+
+</body>
+</html>

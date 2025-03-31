@@ -1,0 +1,86 @@
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #87CEEB;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Heading Style */
+h2 {
+    text-align: center;
+    color: #007bff; /* Matching color from previous styles */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff; /* Header background matching color scheme */
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+
+/* Zebra striping for rows */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #e6f7ff;
+}
+
+/* Table Layout: Space out cells */
+table th, table td {
+    padding: 15px;
+}
+
+/* Optional: Button Styling */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Optional: Centering Table */
+#reviewsTable {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+/* Optional: Page Layout for Large Screens */
+@media (min-width: 768px) {
+    body {
+        padding: 40px;
+    }
+    #reviewsTable {
+        width: 80%;
+    }
+}

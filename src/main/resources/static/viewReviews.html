@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Reviews</title>
+    <link rel="stylesheet" href="styles/viewReviews.css"> <!-- Optional external CSS -->
+    <script defer src="scripts/viewReviews.js"></script> <!-- Ensure script is linked -->
+</head>
+<body>
+
+<h2 id="restaurantNameHeading">Restaurant Reviews</h2>
+
+
+<!-- Reviews Table -->
+<table id="reviewsTable">
+    <thead>
+        <tr>
+            <th>Submitted By</th>
+            <th>Peanut Score</th>
+            <th>Egg Score</th>
+            <th>Dairy Score</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Reviews will be dynamically inserted here -->
+    </tbody>
+</table>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Retrieve restaurant name from localStorage
+        const restaurantName = localStorage.getItem("restaurantName");
+
+        // Set the heading with the restaurant name if available
+        if (restaurantName) {
+            document.getElementById("restaurantNameHeading").textContent = `Reviews for ${restaurantName}`;
+        }
+    });
+</script>
+
+</body>
+</html>

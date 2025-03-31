@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #87CEEB; /* Light blue background */
+    color: #333; /* Dark text for readability */
+}
+
+h2 {
+    text-align: center;
+    color: #2A52BE; /*  for the heading */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#searchQuery {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #444;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.results-container {
+    margin-top: 20px;
+    background-color: #ffffff; /* White background for results */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f9f9f9; /* Light grey for each restaurant's info */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    justify-content: space-between; /* This will place items on the left and right */
+    align-items: center; /* This vertically aligns items in the list */
+}
+
+.restaurant-list li {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.big-score {
+    font-size: 2rem; /* Make the overall score bigger */
+    font-weight: bold;
+    color: #2b385d; /* Use a color that stands out */
+}
+
+.restaurant-list li strong {
+    color: #2b385d; /* Dark teal for labels */
+}
+
+.restaurant-list a {
+    color: #1e90ff; /* Blue for links */
+    text-decoration: none;
+}
+
+.restaurant-list a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #2A52BE; /* Dark teal */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #000547; /* Darker teal when hovered */
+}
+
+button:focus {
+    outline: none;
+}
+
+.goBackBtn {
+    background-color: #2A52BE; /* Dark teal */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Add some space above the button */
+    display: block;
+    margin-left: auto;  /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+}
+
+.goBackBtn:hover {
+    background-color: #000547; /* Darker teal when hovered */
+}
+
+.goBackBtn:focus {
+    outline: none;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Allergy Reviews - Add User</title>
+    <link rel="stylesheet" href="styles/addUser.css">
+    <script defer src="scripts/reviewUser.js"></script>
+</head>
+<body>
+<h1>Restaurant Allergy Reviews Sign Up!</h1>
+<div id="userForm">
+    <h2>Add a user</h2>
+    <label for="displayName">Display name:</label>
+    <input type="text" id="displayName" placeholder="displayName" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="password" required><br>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" placeholder="city" required><br>
+
+    <label for="state">State:</label>
+    <input type="text" id="state" placeholder="state" required><br>
+
+    <label for="zipCode">Zip Code:</label>
+    <input type="text" id="zipCode" placeholder="zipCode" required><br>
+
+    <div class="checkbox-container">
+        <label for="peanutAllergies">Peanut Allergy🥜:</label>
+        <input type="checkbox" id="peanutAllergies">
+    </div>
+
+    <div class="checkbox-container">
+        <label for="eggAllergies">Egg Allergy🥚:</label>
+        <input type="checkbox" id="eggAllergies">
+    </div>
+
+    <div class="checkbox-container">
+        <label for="dairyAllergies">Dairy Allergy🥛:</label>
+        <input type="checkbox" id="dairyAllergies">
+    </div>
+
+    <button onclick="handleSignUp()">Submit</button>
+
+
+</div>
+</body>
+</html>

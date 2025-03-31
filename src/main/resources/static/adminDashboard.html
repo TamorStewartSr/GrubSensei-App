@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="styles/adminDashboard.css">
+  <script defer src="scripts/admin.js"></script>
+</head>
+<body>
+
+<div class="dashboard-container">
+  <button class="logout-btn" onclick="logout()">Logout</button>
+  <h2>Admin Dashboard - Pending Dining Reviews</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Submitted By</th>
+      <th>Restaurant ID</th>
+      <th>Peanut Score</th>
+      <th>Egg Score</th>
+      <th>Dairy Score</th>
+      <th>Comment</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="reviewTableBody">
+    <!-- Reviews will be dynamically loaded here -->
+    </tbody>
+  </table>
+</div>
+<script>
+  // Function to render reviews into the table
+  function renderReviews(reviews) {
+    const reviewTableBody = document.getElementById('reviewTableBody');
+    reviewTableBody.innerHTML = ''; // Clear existing rows
+
+    reviews.forEach(review => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+              <td>${review.id}</td>
+              <td>${review.submittedBy}</td>
+              <td>${review.restaurantId}</td>
+              <td>${review.peanutScore}</td>
+              <td>${review.eggScore}</td>
+              <td>${review.dairyScore}</td>
+              <td>${review.comment}</td>
+               <td>
+                   <button class="action-btn approve-btn" onclick="performReviewAction(${review.id}, true)">
+                    <span>👍</span> Approve
+                   </button>
+                    <button class="action-btn reject-btn" onclick="performReviewAction(${review.id}, false)">
+                   <span>👎</span> Reject
+                 </button>
+               </td>
+
+          `;
+      reviewTableBody.appendChild(row);
+    });
+  }
+
+  // Call the function when the page loads
+  window.onload = async function() {
+    const pendingReviews = await getReviewsByStatus("PENDING");
+    renderReviews(pendingReviews);
+  }
+</script>
+
+</body>
+</html>
