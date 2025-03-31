@@ -1,6 +1,5 @@
 package com.springboot.reviewApp.controller;
 
-import com.springboot.reviewApp.model.AdminReview;
 import com.springboot.reviewApp.model.DiningReview;
 import com.springboot.reviewApp.model.Restaurant;
 import com.springboot.reviewApp.model.ReviewStatus;
