@@ -7,7 +7,6 @@ import com.springboot.reviewApp.repository.DiningReviewRepository;
 import com.springboot.reviewApp.repository.RestaurantRepository;
 import com.springboot.reviewApp.repository.ReviewUserRepository;
 import jakarta.validation.Valid;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
