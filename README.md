@@ -74,7 +74,18 @@ src
 └── test
 
 ```
-Contribution
+
+## Future features
+* User Features: Profile management, favorites, review editing,   reactions, comments, and follow feature.
+* Restaurant Features: Owner accounts, menu management, reservations, operating hours, and verification badges.
+* Admin Features: Review moderation, analytics dashboard, and user management.
+* Search & Filtering: Advanced filters, sort by ratings, map view, and geo-location search.
+* Security Features: 2FA, email verification, and password recovery.
+* Recommendation & Analytics: Personalized recommendations, sentiment analysis, and trending restaurants.
+* Technical Enhancements: Redis caching, pagination, microservices, Docker, and CI/CD pipeline.
+* Community Features: Badges, leaderboards, and restaurant promotions.
+
+## Contribution
 
 Contributions are welcome! Please follow these steps:
 	1.	Fork the repo.
