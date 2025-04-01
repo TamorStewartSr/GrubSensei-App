@@ -1,4 +1,4 @@
-// TODO [] create a functions for viewing all reviews use go to viewReviews.js
+// TODO [x] create a functions for viewing all reviews use go to viewReviews.js
 // TODO [] create functions for updating user credentials
 // TODO [] create a function to delete a rejected review
 // TODO [] crate a function to update review
