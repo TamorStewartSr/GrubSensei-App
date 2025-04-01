@@ -23,20 +23,28 @@ public class ReviewUserController {
         this.reviewUserRepository = reviewUserRepository;
     }
 
-    // Test method
+    // Test method Works!!! but test in the frontend
     @PostMapping("/signUp")
     public ResponseEntity<String> addReviewUser(@Valid @RequestBody ReviewUser reviewUser) {
-        try {
-            validateUser(reviewUser); // Validate user details
-            reviewUserRepository.save(reviewUser); // Save the user to the database
-
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body("User registered successfully: " + reviewUser.getDisplayName());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Sign-up failed: " + e.getMessage());
-        }
+        validateUser(reviewUser);
+        reviewUserRepository.save(reviewUser);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("User registered successfully: " + reviewUser.getDisplayName());
     }
+
+//    @PostMapping("/signUp") //Original method
+//    public ResponseEntity<String> addReviewUser(@Valid @RequestBody ReviewUser reviewUser) {
+//        try {
+//            validateUser(reviewUser); // Validate user details
+//            reviewUserRepository.save(reviewUser); // Save the user to the database
+//
+//            return ResponseEntity.status(HttpStatus.CREATED)
+//                    .body("User registered successfully: " + reviewUser.getDisplayName());
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                    .body("Sign-up failed: " + e.getMessage());
+//        }
+//    }
 
     @GetMapping("/{displayName}")
     public UserDTO getUser(@PathVariable String displayName) {
