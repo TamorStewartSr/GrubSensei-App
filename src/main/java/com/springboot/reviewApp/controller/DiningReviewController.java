@@ -42,6 +42,17 @@ public class DiningReviewController {
         diningReview.setReviewStatus(ReviewStatus.PENDING);
         diningReviewRepository.save(diningReview);
     }
+    
+    @DeleteMapping("/delete/{id}")
+    public DiningReview deleteReview(@PathVariable ("id") Long id ) {
+        Optional<DiningReview> optionalDiningReview = diningReviewRepository.findById(id);
+        if (optionalDiningReview.isEmpty()) {
+            return null;
+        }
+        DiningReview diningReviewDelete = optionalDiningReview.get();
+        diningReviewRepository.delete(diningReviewDelete);
+        return diningReviewDelete;
+    }
 
     @GetMapping("/reviews/submittedBy/{submittedBy}")
     public List<DiningReview> getReviewsBySubmittedBy(@PathVariable String submittedBy) {
