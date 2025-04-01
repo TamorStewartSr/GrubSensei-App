@@ -1,6 +1,6 @@
 // TODO [x] create a functions for viewing all reviews use go to viewReviews.js
 // TODO [] create functions for updating user credentials
-// TODO [] create a function to delete a rejected review
+// TODO [x] create a function to delete a rejected review
 // TODO [] crate a function to update review
 // TODO [] crate a function to delete a user credentials
 
@@ -60,10 +60,32 @@ async function viewReviews() {
             <td>${review.dairyScore}</td>
             <td>${review.comment}</td>
             <td>${review.reviewStatus}</td>
-            <td>Actions Placeholder</td>
+            <td>
+                <button onclick="deleteReview('${review.id}')">Delete</button>
+            </td>
         </tr>
     `).join('');
 }
+
+async function deleteReview(reviewId) {
+    if (confirm("Are you sure you want to delete this review?")) {
+        try {
+            const response = await fetch(`${baseUrl1}/delete/${reviewId}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                alert("Review deleted successfully.");
+                viewReviews(); // Refresh the reviews list
+            } else {
+                alert("Failed to delete review.");
+            }
+        } catch (error) {
+            console.error("Error deleting review:", error);
+            alert("An error occurred while deleting the review.");
+        }
+    }
+}
+
 
 // Automatically call the function when the page loads
 document.addEventListener("DOMContentLoaded", viewReviews);
