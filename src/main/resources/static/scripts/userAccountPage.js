@@ -36,6 +36,7 @@ async function getReviewsBySubmittedBy(submittedBy) {
 // Function to display reviews on page load
 async function viewReviews() {
     const submittedBy =  localStorage.getItem('loggedInUser'); // Retrieve stored user
+    const storedRestaurant = localStorage.getItem('restaurantName');// Retrieve stored resataurant name
 
     if (!submittedBy) {
         console.error("No user name found in localStorage.");
@@ -53,7 +54,7 @@ async function viewReviews() {
     tableBody.innerHTML = reviews.map(review => `
         <tr>
             <td>${review.submittedBy}</td>
-            <td>${review.restaurantId}</td>
+             <td>${storedRestaurant || review.restaurantId}</td> <!-- Show the stored name -->
             <td>${review.peanutScore}</td>
             <td>${review.eggScore}</td>
             <td>${review.dairyScore}</td>
