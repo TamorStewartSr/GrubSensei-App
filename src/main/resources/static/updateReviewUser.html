@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Update User Info</title>
+  <link rel="stylesheet" href="styles/addUser.css">
 </head>
 <body>
   <h2>Update Your Profile</h2>
@@ -24,16 +25,16 @@
       <input type="text" id="zipCode" />
     </label><br /><br />
 
-    <label>Peanut Allergy (true/false):<br />
-      <input type="text" id="peanutAllergies" />
+    <label>Peanut Allergy:<br />
+      <input type="checkbox" id="peanutAllergies" />
     </label><br /><br />
 
-    <label>Dairy Allergy (true/false):<br />
-      <input type="text" id="dairyAllergies" />
+    <label>Dairy Allergy:<br />
+      <input type="checkbox" id="dairyAllergies" />
     </label><br /><br />
 
-    <label>Egg Allergy (true/false):<br />
-      <input type="text" id="eggAllergies" />
+    <label>Egg Allergy:<br />
+      <input type="checkbox" id="eggAllergies" />
     </label><br /><br />
 
     <button type="submit">Update Info</button>
@@ -73,9 +74,9 @@
         city: document.getElementById('city').value.trim(),
         state: document.getElementById('state').value.trim(),
         zipCode: document.getElementById('zipCode').value.trim(),
-        peanutAllergies: document.getElementById('peanutAllergies').value.trim(),
-        dairyAllergies: document.getElementById('dairyAllergies').value.trim(),
-        eggAllergies: document.getElementById('eggAllergies').value.trim()
+        peanutAllergies: !!document.getElementById('peanutAllergies').checked,
+        dairyAllergies: !!document.getElementById('dairyAllergies').checked,
+        eggAllergies: !!document.getElementById('eggAllergies').checked
       };
 
       updateUser(displayName, updatedDetails);

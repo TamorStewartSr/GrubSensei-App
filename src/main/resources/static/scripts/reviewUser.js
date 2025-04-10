@@ -31,6 +31,7 @@ async function login(displayName, password) {
 
         //Store the logged-in username in localStorage
         localStorage.setItem('loggedInUser', user.displayName);
+        localStorage.setItem('loggedInUserId', user.id)
 
         alert(`Welcome, ${user.displayName}!`);
         window.location.href = 'loggedInPage.html'; //Redirect after login
