@@ -118,23 +118,6 @@ async function getUserById(id) {
     }
 }
 
-//Update user
-async function updateUser(id, updatedDetails) {
-    try {
-        const response = await fetch(`${baseUrl}/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updatedDetails),
-        });
-
-        return await handleResponse(response);
-    } catch (error) {
-        alert(`Error updating user: ${error.message}`);
-    }
-}
-
 // Delete user
 async function deleteUser(id) {
     try {
