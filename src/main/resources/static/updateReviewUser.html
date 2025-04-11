@@ -1,86 +1,141 @@
+<!-- TODO [] add a account button or back button -->
+ <!-- TODO [] add a function that redirected to the index.html when a user submits an update -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Update User Info</title>
-  <link rel="stylesheet" href="styles/addUser.css">
+  <link rel="stylesheet" href="styles/updateReviewUser.css">
 </head>
 <body>
-  <h2>Update Your Profile</h2>
+  <h1>Account Information</h1>
 
-  <form id="updateForm">
-    <label>Display Name (Required):<br />
+  <form id="updateForm" onsubmit="return validatePasswords()">
+    <h2>Update info:<h2>
+    <label>ID:<br>
+      <input type="text" id="Id" readonly>
+    </label>  
+    
+    <label>Display Name:<br />
       <input type="text" id="displayName" required />
-    </label><br /><br />
-
+    </label>
+  
+    <label>New Password:<br />
+      <input type="password" id="password" required />
+    </label>
+  
+    <label>Confirm Password:<br />
+      <input type="password" id="confirmPassword" oninput="checkPasswordMatch()" required />
+    </label>
+    <span id="matchMessage" style="font-weight: bold;"></span><br><br />
+  
     <label>City:<br />
       <input type="text" id="city" />
-    </label><br /><br />
-
+    </label><br><br />
+  
     <label>State:<br />
       <input type="text" id="state" />
-    </label><br /><br />
-
+    </label><br><br />
+  
     <label>Zip Code:<br />
       <input type="text" id="zipCode" />
-    </label><br /><br />
-
+    </label><br><br />
+  
     <label>Peanut Allergy:<br />
       <input type="checkbox" id="peanutAllergies" />
-    </label><br /><br />
-
+    </label><br><br />
+  
     <label>Dairy Allergy:<br />
       <input type="checkbox" id="dairyAllergies" />
-    </label><br /><br />
-
+    </label><br><br />
+  
     <label>Egg Allergy:<br />
       <input type="checkbox" id="eggAllergies" />
-    </label><br /><br />
-
+    </label><br><br />
+  
     <button type="submit">Update Info</button>
   </form>
 
   <script>
     const baseUrl = 'http://localhost:8082/reviewUsers'; // Adjust to match your actual API route
 
-    async function updateUser(id, updatedDetails) {
-      try {
-        const response = await fetch(`${baseUrl}/${id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(updatedDetails),
-        });
+  async function updateUser(updatedDetails) {
+  const userId = localStorage.getItem('loggedInUserId');
+  const response = await fetch(`${baseUrl}/${userId}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedDetails),
+  });
 
-        if (!response.ok) {
-          const errorData = await response.text();
-          throw new Error(`Server responded with status ${response.status}: ${errorData}`);
-        }
+  if (!response.ok) {
+    const errorData = await response.text();
+    throw new Error(`Server responded with status ${response.status}: ${errorData}`);
+  }
 
-        alert("User info updated successfully!");
-      } catch (error) {
-        alert(`Error updating user: ${error.message}`);
-      }
+  alert("User info updated successfully!");
+}
+
+document.getElementById('updateForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const form = event.target;
+
+  const updatedDetails = {
+    displayName: form.displayName.value.trim(),
+    password: form.password.value.trim(),
+    city: form.city.value.trim(),
+    state: form.state.value.trim(),
+    zipCode: form.zipCode.value.trim(),
+    peanutAllergies: form.peanutAllergies.checked,
+    dairyAllergies: form.dairyAllergies.checked,
+    eggAllergies: form.eggAllergies.checked
+  };
+
+  try {
+    await updateUser(updatedDetails);
+  } catch (error) {
+    alert(`Error updating user: ${error.message}`);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const userId = localStorage.getItem('loggedInUserId');
+  if (userId) {
+    document.getElementById('Id').value = userId;
+  }
+});
+
+    function checkPasswordMatch() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const message = document.getElementById('matchMessage');
+
+    if (confirmPassword === "") {
+      message.textContent = "";
+      return;
     }
 
-    document.getElementById('updateForm').addEventListener('submit', (event) => {
-      event.preventDefault();
+    if (password === confirmPassword) {
+      message.textContent = "✅ ";
+      message.style.color = "green";
+    } else {
+      message.textContent = "❌ ";
+      message.style.color = "red";
+    }
+  }
 
-      const displayName = document.getElementById('displayName').value.trim();
+  function validatePasswords() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
 
-      const updatedDetails = {
-        displayName: displayName,
-        city: document.getElementById('city').value.trim(),
-        state: document.getElementById('state').value.trim(),
-        zipCode: document.getElementById('zipCode').value.trim(),
-        peanutAllergies: !!document.getElementById('peanutAllergies').checked,
-        dairyAllergies: !!document.getElementById('dairyAllergies').checked,
-        eggAllergies: !!document.getElementById('eggAllergies').checked
-      };
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return false;
+    }
+    return true;
+  }
 
-      updateUser(displayName, updatedDetails);
-    });
   </script>
 </body>
 </html>
