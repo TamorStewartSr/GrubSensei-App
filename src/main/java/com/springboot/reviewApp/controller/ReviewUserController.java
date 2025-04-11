@@ -71,12 +71,10 @@ public class ReviewUserController {
         return reviewUserRepository.findAll();
     }
 
-    @PutMapping("/{displayName}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateUserInfo(@PathVariable String displayName, @RequestBody ReviewUser updatedUser) {
-        validateDisplayName(displayName);
-
-        Optional<ReviewUser> optionalExistingUser = reviewUserRepository.findUserByDisplayName(displayName);
+    public void updateUserInfo(@PathVariable Long id, @RequestBody ReviewUser updatedUser) {
+        Optional<ReviewUser> optionalExistingUser = reviewUserRepository.findById(id);
         if (optionalExistingUser.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -91,6 +89,7 @@ public class ReviewUserController {
         if (ObjectUtils.isEmpty(updatedUser.getDisplayName())) {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
+        existingUser.setDisplayName(updatedUser.getDisplayName());
 
         if (!ObjectUtils.isEmpty(updatedUser.getCity())) {
             existingUser.setCity(updatedUser.getCity());
