@@ -43,7 +43,7 @@ input[type="text"] {
 }
 
 input[type="checkbox"] {
-    margin-left: 0px; /* Reduce this value to bring the checkbox closer to the text */
+    margin-left: 10px; /* Reduce this value to bring the checkbox closer to the text */
 }
 
 button {
