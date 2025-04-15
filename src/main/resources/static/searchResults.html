@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
     <script defer src="scripts/restaurant.js"></script>
+    <script defer src="scripts/diningReview.js"></script>
     <link rel="stylesheet" href="styles/searchResults.css">
 </head>
 <body>
 <h2>Search Results</h2>
+
 
 <!-- Display the search query (restaurant name) -->
 <p id="searchQuery"></p>
@@ -22,6 +24,7 @@
 <div class="results-container" id="resultsContainer">
     <p>Loading results...</p>
 </div>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -51,7 +54,8 @@
                         <li><strong>🥜Peanut Score = </strong> ${result.peanutScore}</li>
                         <li><strong>🥚Egg Score = </strong> ${result.eggScore}</li>
                         <li><strong>🥛Dairy Score = </strong> ${result.dairyScore}</li>
-                        <button onclick="viewReviews(${result.id})">View Reviews</button> 
+                        <button onclick="viewReviews(${result.id})">View Reviews</button>
+                        <button>+ Review</button> 
                     </ul>
                 `).join('');
             } else {
