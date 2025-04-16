@@ -1,4 +1,4 @@
-<!-- TODO [] add a button to add a review -->
+<!-- TODO [x] add a button to add a review -->
  <!-- TODO [x] add a home button -->
 
 <!DOCTYPE html>
@@ -55,7 +55,7 @@
                         <li><strong>🥚Egg Score = </strong> ${result.eggScore}</li>
                         <li><strong>🥛Dairy Score = </strong> ${result.dairyScore}</li>
                         <button onclick="viewReviews(${result.id})">View Reviews</button>
-                        <button>+ Review</button> 
+                        <button onclick="handleAddReview2(${result.id})">+ Review</button> 
                     </ul>
                 `).join('');
             } else {
@@ -71,6 +71,21 @@
 
         // Redirect to the reviews page
         window.location.href = `viewReviews.html?restaurantId=${restaurantId}`;
+    }
+    
+    //Test function
+    function handleAddReview2(restaurantId) {
+    const isSignedIn = !!localStorage.getItem('loggedInUser'); 
+
+    if (!isSignedIn) {
+        alert("You must be signed in to add a review. Redirecting to sign in...");
+        window.location.href = "index.html"; // send them to login/signup page
+        return;
+    }
+
+    // Store the selected restaurant ID in localStorage or pass as query param
+    localStorage.setItem('selectedRestaurantId', restaurantId);
+    window.location.href = `addReview.html?restaurantId=${restaurantId}`;
     }
 </script>
 
