@@ -104,3 +104,22 @@ button:hover {
     background-color: #0056b3;
 }
 
+.delete-button-container {
+    float: right;
+    
+    display: flex;
+    flex-direction: column;
+    gap: px;
+}
+.delete-button-container button {
+    padding: 8px 16px;
+    background-color: #f70606;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.delete-button-container button:hover {
+    background-color: #0056b3;
+}
+
