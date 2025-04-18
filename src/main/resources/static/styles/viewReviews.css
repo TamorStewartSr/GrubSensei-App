@@ -105,11 +105,12 @@ button:hover {
 }
 
 .delete-button-container {
-    float: right;
-    
+    position: absolute;
+    top: 0px;
+    right: 40px;
     display: flex;
     flex-direction: column;
-    gap: px;
+    gap: 8px;
 }
 .delete-button-container button {
     padding: 8px 16px;
@@ -121,5 +122,12 @@ button:hover {
 }
 .delete-button-container button:hover {
     background-color: #0056b3;
+}
+
+.card {
+    position: relative; /* This makes it the reference point */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
