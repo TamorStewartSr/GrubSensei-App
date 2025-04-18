@@ -12,6 +12,7 @@
     <title>Restaurant Reviews</title>
     <link rel="stylesheet" href="styles/viewReviews.css"> <!-- Optional external CSS -->
     <script defer src="scripts/userAccountPage.js"></script> <!-- Ensure script is linked -->
+    <script defer src="scripts/reviewUser.js"></script>
 </head>
 <body>
 
@@ -26,10 +27,23 @@
     <button onclick="window.location.href='updateReviewUser.html';" class="button-style">Update My Info</button>
 </div>
 
-<div class=""card>
+<div class="card">
 <div class="delete-button-container">
-    <button>Delete Account</button>
+    <button id = "delete-btn">Delete Account</button>
 </div>
+
+<script>
+    // Attach the event listener
+document.getElementById('delete-btn').addEventListener('click', () => {
+    const userId = localStorage.getItem('loggedInUserId');
+    
+    if (userId) {
+        deleteUser(userId);
+    } else {
+        alert('No logged in user found.');
+    }
+});
+</script>
 
 
     <h2>My Reviews</h2>

@@ -127,6 +127,8 @@ async function deleteUser(id) {
             throw new Error('Failed to delete user');
         }
         alert('User deleted successfully');
+        localStorage.removeItem('loggedInUserId');
+        window.location.href = 'index.html';
     } catch (error) {
         alert(`Error deleting user: ${error.message}`);
     }

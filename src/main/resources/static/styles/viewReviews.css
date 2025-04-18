@@ -106,8 +106,8 @@ button:hover {
 
 .delete-button-container {
     position: absolute;
-    top: 0px;
-    right: 40px;
+    top: 1px;
+    right: 2px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -127,7 +127,6 @@ button:hover {
 .card {
     position: relative; /* This makes it the reference point */
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 8px;
 }
 
