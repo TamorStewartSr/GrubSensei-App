@@ -144,4 +144,17 @@ public class ReviewUserController {
         return user;
     }
 
+    @DeleteMapping("/{id}")
+    public ReviewUser delete(@PathVariable Long id) {
+        Optional<ReviewUser> optionalReviewUser = reviewUserRepository.findById(id);
+
+        if (optionalReviewUser.isPresent()) {
+            ReviewUser reviewUserToDelete = optionalReviewUser.get();
+            reviewUserRepository.delete(reviewUserToDelete);
+            return reviewUserToDelete;
+        } else {
+            throw new RuntimeException("ReviewUser with id " + id + " not found.");
+        }
+    }
+
 }
