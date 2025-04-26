@@ -1,19 +1,24 @@
-<!-- TODO [] add a back button -->
+<!-- TODO [x] add a back button -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Reviews</title>
-    <link rel="stylesheet" href="styles/viewReviews.css"> <!-- Optional external CSS -->
+    <link rel="stylesheet" href="styles/viewReviews2.css"> <!-- Optional external CSS -->
     <script defer src="scripts/viewReviews.js"></script> <!-- Ensure script is linked -->
 </head>
 <body>
 
+
+
+
+  
+    <div class="button-container">
+      <button class="search-results-button"onclick="window.history.back()">Search Results</button>
+    </div>
+  
 <h2 id="restaurantNameHeading">Restaurant Reviews</h2>
-
-<button class="button-container"onclick="window.history.back()">Search Results</button>
-
 
 <!-- Reviews Table -->
 <table id="reviewsTable">

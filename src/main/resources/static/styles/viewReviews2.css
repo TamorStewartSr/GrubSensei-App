@@ -1,0 +1,116 @@
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #87CEEB;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Heading Style */
+h2 {
+    text-align: center;
+    color: #007bff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+
+/* Zebra striping for rows */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #e6f7ff;
+}
+
+/* Centering Table */
+#reviewsTable {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+/* Page Layout for Large Screens */
+@media (min-width: 768px) {
+    body {
+        padding: 40px;
+    }
+    #reviewsTable {
+        width: 80%;
+    }
+}
+
+/* Universal Button Style */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Top Right Button Container */
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Push buttons to right */
+    gap: 10px; /* Space between buttons */
+    margin-bottom: 20px; /* Space between buttons and table */
+}
+
+/* Specific Button Styles */
+.back-button {
+    background-color: #6c757d;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
+
+.search-results-button {
+    background-color: #007bff;
+}
+
+.search-results-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: #f70606;
+}
+
+.delete-button:hover {
+    background-color: #c00404;
+}
+
+
