@@ -1,6 +1,6 @@
-# Dining Review App
+# GrubSensei App
 
-Welcome to the Dining Review App! This is a Spring Boot-based web application that allows users to submit dining reviews, manage restaurants, and view aggregated ratings. Admins can moderate reviews for quality assurance.
+Welcome to the GrubSensei App! This is a Spring Boot-based web application that allows users to submit dining reviews, manage restaurants, and view aggregated ratings. Admins can moderate reviews for quality assurance.
 
 ## Features
 
