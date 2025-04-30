@@ -1,5 +1,5 @@
 ![HomePage](src/main/resources/static/image/Grub%20Sensei%20Home%20Page.png)
-# GrubSensei App
+# GrubSensei App™
 
 Welcome to the GrubSensei App! This is a Spring Boot-based web application that allows users to submit dining reviews, manage restaurants, and view aggregated ratings. Admins can moderate reviews for quality assurance.
 
