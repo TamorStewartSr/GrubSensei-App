@@ -19,3 +19,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Trademark Notice
+
+**GrubSensei™** is a trademark of Tamor Stewart. The use of this name, logo, or any confusingly similar variant in a commercial context is prohibited without prior written permission.
+
+The source code in this project is licensed under the [MIT License](LICENSE), but the **GrubSensei™** brand and identity are protected under common law trademark rights.
+
+Unauthorized commercial use of the GrubSensei™ name or branding may result in legal action.
+
+### Commercial Use Disclaimer
+
+You may use, modify, and distribute this code under the MIT License.
+
+However, you may **not use the name "GrubSensei" or any logos, designs, or brand elements** from this project in commercial products, marketing, or services without written permission.
+
+If you're building a commercial project and want to reference or co-brand with GrubSensei™, please reach out.
