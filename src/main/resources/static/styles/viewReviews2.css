@@ -135,3 +135,16 @@ button:hover {
     margin: 10px 0;
     font-size: 16px;
 }
+
+.branding-logo {
+    position: absolute; /* Position the logo at the top-left */
+    top: 10px; /* Adjust the distance from the top */
+    left: 10px; /* Adjust the distance from the left */
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.branding-logo img {
+    width: 20px; /* Adjust the size of the logo */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Add rounded corners */
+}
