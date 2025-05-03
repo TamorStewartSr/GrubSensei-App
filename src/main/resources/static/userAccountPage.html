@@ -3,7 +3,7 @@
 <!--TODO [x] add styling use some of the same styling from admin.css-->
 <!-- TODO [x] add function to the update button use reviewUser.js -->
  <!-- TODO [x] add a delete account button and function -->
-  <!-- TODO [] add a section to display the users account info -->
+  <!-- TODO [x] add a section to display the users account info -->
    <!-- TODO [x] add branding logo-->
 
 <!DOCTYPE html>
@@ -45,15 +45,16 @@
 
 <!-- User Info Section -->
 <div id="userInfo" class="user-info">
-    <p><strong>Display Name:</strong> <span id="userName">Loading...</span></p>
-    <p><strong>Password:</strong> <span id="userEmail">Loading...</span></p>
-    <p><strong>City:</strong> <span id="userJoinedDate">Loading...</span></p>
-    <p><strong>State:</strong> <span id="userJoinedDate">Loading...</span></p>
-    <p><strong>ZipCode:</strong> <span id="userJoinedDate">Loading...</span></p>
-    <p><strong>Peanut Allergy🥜:</strong> <span id="userJoinedDate"></span></p>
-    <p><strong>Egg Allergy🥚:</strong> <span id="userJoinedDate"></span></p>
-    <p><strong>Dairy Allergy🥛:</strong> <span id="userJoinedDate"></span></p>
+    <p><strong>Display Name:</strong> <span id="displayName">Loading..</span></p>
+    <p><strong>Password:</strong> <span id="password">Loading..</span></p>
+    <p><strong>City:</strong> <span id="city">Loading..</span></p>
+    <p><strong>State:</strong> <span id="state">Loading..</span></p>
+    <p><strong>ZipCode:</strong> <span id="zipCode">Loading..</span></p>
+    <p><strong>Peanut Allergy 🥜:</strong> <span id="peanutAllergies">Loading..</span></p>
+    <p><strong>Egg Allergy 🥚:</strong> <span id="eggAllergies">Loading..</span></p>
+    <p><strong>Dairy Allergy 🥛:</strong> <span id="dairyAllergies">Loading..</span></p>
 </div>
+
 
 <!-- <button onclick="window.location.href='loggedInPage.html';" class="button-style">Home</button> -->
     
@@ -78,6 +79,46 @@ document.getElementById('delete-btn').addEventListener('click', () => {
         alert('No logged in user found.');
     }
 });
+
+// Function to retrieve and display user information
+const baseUrl3 = 'http://localhost:8082/reviewUsers'; // Adjust if needed
+
+async function loadUserData() {
+  const userId = localStorage.getItem('loggedInUserId');
+  if (!userId) {
+    alert('No logged in user.');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${baseUrl3}/by-id/${userId}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch user info: ${response.status}`);
+    }
+
+    const userData = await response.json();
+
+    document.getElementById('displayName').textContent = userData.displayName || 'N/A';
+    document.getElementById('password').textContent = userData.password || 'N/A';
+    document.getElementById('city').textContent = userData.city || 'N/A';
+    document.getElementById('state').textContent = userData.state || 'N/A';
+    document.getElementById('zipCode').textContent = userData.zipCode || 'N/A';
+    document.getElementById('peanutAllergies').textContent = userData.peanutAllergies ? 'Yes' : 'No';
+    document.getElementById('eggAllergies').textContent = userData.eggAllergies ? 'Yes' : 'No';
+    document.getElementById('dairyAllergies').textContent = userData.dairyAllergies ? 'Yes' : 'No';
+  } catch (error) {
+    console.error('Error loading user data:', error);
+    alert('Something went wrong loading your account info.');
+  }
+}
+
+// ✅ Call it when the page loads
+window.addEventListener('DOMContentLoaded', loadUserData);
+
+
+
+
+
 </script>
 
 

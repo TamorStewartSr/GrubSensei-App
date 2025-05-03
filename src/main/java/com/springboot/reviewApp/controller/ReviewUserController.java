@@ -71,6 +71,13 @@ public class ReviewUserController {
         return reviewUserRepository.findAll();
     }
 
+    @GetMapping("/by-id/{id}")
+    public ReviewUser getUserById(@PathVariable Long id) {
+        return reviewUserRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    }
+
+
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUserInfo(@PathVariable Long id, @RequestBody ReviewUser updatedUser) {
