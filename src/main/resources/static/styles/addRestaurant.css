@@ -75,3 +75,22 @@ button {
 button:hover {
     background-color: #00509e; /* Slightly lighter blue */
 }
+
+.branding-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.branding-logo img {
+    width: 150px;
+    height: auto;
+    border-radius: 6px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.branding-logo a {
+    display: inline-block;
+}
