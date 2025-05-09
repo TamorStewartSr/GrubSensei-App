@@ -224,5 +224,24 @@ border-radius: 4px;
     background-color: #00509e;
 }
 
+.branding-logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.branding-logo img {
+    width: 150px;
+    height: auto;
+    border-radius: 6px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.branding-logo a {
+    display: inline-block;
+}
+
 
 
