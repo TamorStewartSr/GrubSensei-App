@@ -85,20 +85,29 @@ public class DiningReviewController {
         }
     }
 
+    @PutMapping("/id")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateReviewInfo(@PathVariable Long id, @RequestBody DiningReview updateReview) {
+        DiningReview existingReview = diningReviewRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        copyReviewInfo(updateReview, existingReview);
+        diningReviewRepository.save(existingReview);
+    }
+
     private void copyReviewInfo(DiningReview updateReview, DiningReview existingReview) {
-        if (!ObjectUtils.isEmpty(updateReview.getComment())) {
+        if (updateReview.getComment() != null) {
             existingReview.setComment(updateReview.getComment());
         }
 
-        if (!ObjectUtils.isEmpty(updateReview.getDairyScore())) {
+        if (updateReview.getDairyScore() != null) {
             existingReview.setDairyScore(existingReview.getDairyScore());
         }
 
-        if (!ObjectUtils.isEmpty(updateReview.getEggScore())) {
+        if (updateReview.getEggScore() != null) {
             existingReview.setEggScore(existingReview.getEggScore());
         }
 
-        if (!ObjectUtils.isEmpty(existingReview.getPeanutScore())) {
+        if (updateReview.getPeanutScore() != null) {
             existingReview.setPeanutScore(existingReview.getPeanutScore());
         }
     }
