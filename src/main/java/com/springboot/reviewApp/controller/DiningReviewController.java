@@ -85,4 +85,22 @@ public class DiningReviewController {
         }
     }
 
+    private void copyReviewInfo(DiningReview updateReview, DiningReview existingReview) {
+        if (!ObjectUtils.isEmpty(updateReview.getComment())) {
+            existingReview.setComment(updateReview.getComment());
+        }
+
+        if (!ObjectUtils.isEmpty(updateReview.getDairyScore())) {
+            existingReview.setDairyScore(existingReview.getDairyScore());
+        }
+
+        if (!ObjectUtils.isEmpty(updateReview.getEggScore())) {
+            existingReview.setEggScore(existingReview.getEggScore());
+        }
+
+        if (!ObjectUtils.isEmpty(existingReview.getPeanutScore())) {
+            existingReview.setPeanutScore(existingReview.getPeanutScore());
+        }
+    }
+
 }
