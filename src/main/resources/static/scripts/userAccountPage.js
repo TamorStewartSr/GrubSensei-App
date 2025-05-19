@@ -62,6 +62,10 @@ async function viewReviews() {
             <td>${review.reviewStatus}</td>
             <td>
                 <button onclick="deleteReview('${review.id}')">Delete</button>
+                
+                <button onclick="updateReview('${review.id}')">Update</button>
+                
+                <button onclick="viewReview('${review.id}')">View</button>
             </td>
         </tr>
     `).join('');

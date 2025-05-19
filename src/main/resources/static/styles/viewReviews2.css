@@ -54,6 +54,12 @@ tr:hover {
     max-width: 900px;
 }
 
+/* Add spacing between action buttons in the review table */
+#reviewsTable td > button {
+    margin-right: 8px !important; /* Space between buttons */
+    margin-bottom: 4px !important; /* Space below buttons */
+}
+
 /* Page Layout for Large Screens */
 @media (min-width: 768px) {
     body {
