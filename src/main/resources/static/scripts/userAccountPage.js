@@ -63,7 +63,7 @@ async function viewReviews() {
             <td>
                 <button onclick="deleteReview('${review.id}')">Delete</button>
                 
-                <button onclick="updateReview('${review.id}')">Update</button>
+                <button onclick="window.location.href='updateDiningReview.html'">Update</button>
                 
                 <button onclick="viewReview('${review.id}')">View</button>
             </td>
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", viewReviews);
 //update Review function
 async function updateReview(reviewId, reviewDetails) {
     try {
-        const response = await fetch(`${baseUrl}/updateReview/${reviewId}`, {
+        const response = await fetch(`${baseUrl1}/updateReview/${reviewId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
