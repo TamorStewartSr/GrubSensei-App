@@ -94,3 +94,55 @@ async function deleteReview(reviewId) {
 // Automatically call the function when the page loads
 document.addEventListener("DOMContentLoaded", viewReviews);
 
+//update Review function
+async function updateReview(reviewId, reviewDetails) {
+    try {
+        const response = await fetch(`${baseUrl}/updateReview/${reviewId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewDetails),
+        });
+
+        if (response.ok) {
+            alert('Review updated!');
+            window.location.href = 'loggedInPage.html';
+        } else {
+            const errorData = await response.json();
+
+            // Check if there are field-specific validation errors
+            if (typeof errorData === 'object' && !Array.isArray(errorData)) {
+                // Format all error messages into a single string
+                const errorMessages = Object.values(errorData).join('\n');
+                throw new Error(errorMessages);
+            } else {
+                // Generic error message if structure is unexpected
+                throw new Error(errorData.message || 'Please fill input field.');
+            }
+        }
+    } catch (error) {
+        alert(`Updating review failed:\n${error.message}`);
+    }
+}
+//Handle Update Review function
+async function handleUpdateReview() {
+    //Collect the form data for the review
+    const reviewId = document.getElementById('reviewId').value.trim();
+    const reviewDetails = {
+        submittedBy: document.getElementById('submittedBy').value.trim(),
+        restaurantId: document.getElementById('restaurantId').value.trim(),
+        peanutScore: parseInt(document.getElementById('peanutRating').value.trim()) || null,
+        eggScore: parseInt(document.getElementById('eggRating').value.trim()) || null,
+        dairyScore: parseInt(document.getElementById('dairyRating').value.trim()) || null,
+        comment: document.getElementById('comment').value.trim()
+    };
+    try {
+        await updateReview(reviewId, reviewDetails);
+        alert('Review updated successfully!');
+    } catch (error) {
+        alert(`Error updating review:\n${error.message}`);
+    }
+}
+
+
