@@ -1,7 +1,6 @@
 // TODO [x] create a functions for viewing all reviews use go to viewReviews.js
 // TODO [x] create functions for updating user credentials
 // TODO [x] create a function to delete a rejected review
-// TODO [] crate a function to update review
 // TODO [x] crate a function to delete a user credentials
 
 const baseUrl1 = "http://localhost:8082/diningReviews"; // Adjust if needed
