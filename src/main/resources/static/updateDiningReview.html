@@ -1,3 +1,4 @@
+// TODO [] crate a function to update reviews
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Review</title>
     <link rel="stylesheet" href="styles/addReview.css">
-    <script defer src= "scripts/diningReview.js"></script>
 </head>
 <body>
 
@@ -55,7 +55,7 @@
         <input id="dairyRating" type="number" step="0.01" min="0.00" max="5.00" placeholder="0.00">
     </div>
 
-    <button onclick="handleAddReview()">Update</button>
+    <button onclick="handleUpdateReview()">Update</button>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -74,6 +74,59 @@
             document.getElementById('restaurantId').value = storedRestaurantId;
         }
     });
+
+    //update Review function
+    const baseUrl = 'http://localhost:8082/diningReviews';
+    async function updateReview(reviewId, reviewDetails) {
+    try {
+        const response = await fetch(`${baseUrl1}/updateReview/${reviewId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewDetails),
+        });
+
+        if (response.ok) {
+            alert('Review updated!');
+            window.location.href = 'loggedInPage.html';
+        } else {
+            const errorData = await response.json();
+
+            // Check if there are field-specific validation errors
+            if (typeof errorData === 'object' && !Array.isArray(errorData)) {
+                // Format all error messages into a single string
+                const errorMessages = Object.values(errorData).join('\n');
+                throw new Error(errorMessages);
+            } else {
+                // Generic error message if structure is unexpected
+                throw new Error(errorData.message || 'Please fill input field.');
+            }
+        }
+    } catch (error) {
+        alert(`Updating review failed:\n${error.message}`);
+    }
+}
+//Handle Update Review function
+async function handleUpdateReview() {
+    //Collect the form data for the review
+    const reviewId = document.getElementById('reviewId').value.trim();
+    const reviewDetails = {
+        submittedBy: document.getElementById('submittedBy').value.trim(),
+        restaurantId: document.getElementById('restaurantId').value.trim(),
+        peanutScore: parseInt(document.getElementById('peanutRating').value.trim()) || null,
+        eggScore: parseInt(document.getElementById('eggRating').value.trim()) || null,
+        dairyScore: parseInt(document.getElementById('dairyRating').value.trim()) || null,
+        comment: document.getElementById('comment').value.trim()
+    };
+    try {
+        await updateReview(reviewId, reviewDetails);
+        alert('Review updated successfully!');
+    } catch (error) {
+        alert(`Error updating review:\n${error.message}`);
+    }
+}
+
 </script>
 
 </body>
