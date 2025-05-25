@@ -85,7 +85,7 @@ public class DiningReviewController {
         }
     }
 
-    @PutMapping("/updateReview/id")
+    @PutMapping("/updateReview/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateReviewInfo(@PathVariable Long id, @RequestBody DiningReview updateReview) {
         DiningReview existingReview = diningReviewRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));

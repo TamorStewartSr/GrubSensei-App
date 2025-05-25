@@ -1,4 +1,4 @@
-<!-- TODO[] create a update review function  -->
+<!-- TODO[x] create a update review function  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,19 +22,18 @@
 <div class="form-container">
     <!-- Left-aligned inputs for Restaurant Name and Reviewer's Name -->
     <div class="left-align-container">
+         <!-- Hidden inputs (these aren't meant to be edited by user) -->
+        <input id="reviewId" type="hidden" />
+        <input id="restaurantId" type="hidden" />
+        <input id="submittedBy" type="hidden" />
+
         <label for="restaurantName">Restaurant Name:</label>
         <input id="restaurantName" type="text" placeholder="Enter the restaurant name" readonly>
 
-        <label for="restaurantId">Restaurant ID:</label>
-        <input id="restaurantId" type="text" placeholder="Enter the restaurant ID" readonly>
-
-
-        <label for="submittedBy">Reviewer's Name:</label>
-        <input id="submittedBy" type="text" placeholder="Enter your name" readonly>
     </div>
 
     <div class="rating-title" style="font-weight: bold;">Must add #Update to your review for approval</div>
-    <label for="comment"></label><textarea id="comment" placeholder="Write your review here..."></textarea><br>
+    <label for="comment"></label><textarea id="comment" placeholder="Start your update review with #Update..."></textarea><br>
 
 
     <!-- Allergy Ratings Title -->
@@ -58,6 +57,8 @@
     <button onclick="handleUpdateReview()">Update</button>
 </div>
 <script>
+     const baseUrl1 = 'http://localhost:8082/diningReviews';
+
     document.addEventListener('DOMContentLoaded', () => {
         const username = localStorage.getItem('loggedInUser');
         if (username) {
@@ -73,10 +74,13 @@
         if (storedRestaurantId) {
             document.getElementById('restaurantId').value = storedRestaurantId;
         }
+
+        const reviewId = localStorage.getItem('reviewId');
+        if (reviewId) document.getElementById('reviewId').value = reviewId;
+
     });
 
     //update Review function
-    const baseUrl = 'http://localhost:8082/diningReviews';
     async function updateReview(reviewId, reviewDetails) {
     try {
         const response = await fetch(`${baseUrl1}/updateReview/${reviewId}`, {
@@ -114,17 +118,19 @@ async function handleUpdateReview() {
     const reviewDetails = {
         submittedBy: document.getElementById('submittedBy').value.trim(),
         restaurantId: document.getElementById('restaurantId').value.trim(),
-        peanutScore: parseInt(document.getElementById('peanutRating').value.trim()) || null,
-        eggScore: parseInt(document.getElementById('eggRating').value.trim()) || null,
-        dairyScore: parseInt(document.getElementById('dairyRating').value.trim()) || null,
+        peanutScore: parseFloat(document.getElementById('peanutRating').value.trim()) || null,
+        eggScore: parseFloat(document.getElementById('eggRating').value.trim()) || null,
+        dairyScore: parseFloat(document.getElementById('dairyRating').value.trim()) || null,
         comment: document.getElementById('comment').value.trim()
     };
-    try {
-        await updateReview(reviewId, reviewDetails);
-        alert('Review updated successfully!');
-    } catch (error) {
-        alert(`Error updating review:\n${error.message}`);
+    // Require #Update tag
+    if (!reviewDetails.comment.startsWith('#Update')) {
+      alert("Your comment must start with '#Update' for it to be processed.");
+      return;
     }
+
+    await updateReview(reviewId, reviewDetails);
+  
 }
 
 </script>

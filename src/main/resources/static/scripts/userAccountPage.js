@@ -62,8 +62,8 @@ async function viewReviews() {
             <td>
                 <button onclick="deleteReview('${review.id}')">Delete</button>
                 
-                <button onclick="window.location.href='updateDiningReview.html'">Update</button>
-                
+                <button onclick="editReview('${review.id}')">Update</button>
+
                 <button onclick="viewReview('${review.id}')">View</button>
             </td>
         </tr>
@@ -89,6 +89,10 @@ async function deleteReview(reviewId) {
     }
 }
 
+function editReview(reviewId) {
+    localStorage.setItem('reviewId', reviewId);
+    window.location.href = 'updateDiningReview.html';
+}
 
 // Automatically call the function when the page loads
 document.addEventListener("DOMContentLoaded", viewReviews);

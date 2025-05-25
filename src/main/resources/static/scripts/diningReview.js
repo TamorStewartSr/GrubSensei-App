@@ -55,9 +55,9 @@ async function handleAddReview() {
     const reviewDetails = {
         submittedBy: document.getElementById('submittedBy').value.trim(),
         restaurantId: document.getElementById('restaurantId').value.trim(),
-        peanutScore: parseInt(document.getElementById('peanutRating').value.trim()) || null,
-        eggScore: parseInt(document.getElementById('eggRating').value.trim()) || null,
-        dairyScore: parseInt(document.getElementById('dairyRating').value.trim()) || null,
+        peanutScore: parseFloat(document.getElementById('peanutRating').value.trim()) || null,
+        eggScore: parseFloat(document.getElementById('eggRating').value.trim()) || null,
+        dairyScore: parseFloat(document.getElementById('dairyRating').value.trim()) || null,
         comment: document.getElementById('comment').value.trim()
     };
 
