@@ -3,7 +3,32 @@
 // TODO [x] create a function to delete a rejected review
 // TODO [x] crate a function to delete a user credentials
 
-const baseUrl1 = "http://localhost:8082/diningReviews"; // Adjust if needed
+// Inject custom button styles for the review action buttons
+const style = document.createElement('style');
+style.textContent = `
+button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 14px;
+}
+button[onclick^="deleteReview"] {
+  background-color: #e74c3c; /* Red for delete */
+}
+button[onclick^="editReview"] {
+  background-color: #888888; /* Gray for update */
+}
+button[onclick^="viewReview"] {
+  background-color: #007bff; /* Blue for view */
+}
+`;
+document.head.appendChild(style);
+
+// Base URL for the dining reviews API
+const baseUrl1 = "http://localhost:8082/diningReviews"; 
 
 // Function to handle API responses
 async function handleResponse(response) {
