@@ -3,30 +3,6 @@
 // TODO [x] create a function to delete a rejected review
 // TODO [x] crate a function to delete a user credentials
 
-// Inject custom button styles for the review action buttons
-const style = document.createElement('style');
-style.textContent = `
-button {
-  padding: 6px 14px;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  margin: 2px;
-  cursor: pointer;
-  font-size: 14px;
-}
-button[onclick^="deleteReview"] {
-  background-color: #e74c3c; /* Red for delete */
-}
-button[onclick^="editReview"] {
-  background-color: #888888; /* Gray for update */
-}
-button[onclick^="viewReview"] {
-  background-color: #007bff; /* Blue for view */
-}
-`;
-document.head.appendChild(style);
-
 // Base URL for the dining reviews API
 const baseUrl1 = "http://localhost:8082/diningReviews"; 
 
@@ -67,6 +43,33 @@ async function viewReviews() {
         return;
     }
 
+     // Inject CSS once
+    if (!document.querySelector('#dynamicReviewStyle')) {
+        const style = document.createElement('style');
+        style.id = 'dynamicReviewStyle';
+        style.textContent = `
+            .review-actions button {
+                padding: 6px 14px;
+                border: none;
+                border-radius: 4px;
+                color: #fff;
+                margin: 2px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            .review-actions button.delete {
+                background-color: #e74c3c;
+            }
+            .review-actions button.edit {
+                background-color: #888888;
+            }
+            .review-actions button.view {
+                background-color: #007bff;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     const reviews = await getReviewsBySubmittedBy(submittedBy);
     
     const tableBody = document.querySelector("#reviewsTable tbody");
@@ -84,12 +87,10 @@ async function viewReviews() {
             <td>${review.dairyScore}</td>
             <td>${review.comment}</td>
             <td>${review.reviewStatus}</td>
-            <td>
-                <button onclick="deleteReview('${review.id}')">Delete</button>
-                
-                <button onclick="editReview('${review.id}')">Update</button>
-
-                <button onclick="viewReview('${review.id}')">View</button>
+            <td class="review-actions">
+                <button class="delete" onclick="deleteReview('${review.id}')">Delete</button>
+                <button class="edit" onclick="editReview('${review.id}')">Update</button>
+                <button class="view" onclick="viewReview('${review.id}')">View</button>
             </td>
         </tr>
     `).join('');
