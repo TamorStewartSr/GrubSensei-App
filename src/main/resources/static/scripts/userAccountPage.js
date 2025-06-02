@@ -63,9 +63,7 @@ async function viewReviews() {
             .review-actions button.edit {
                 background-color: #888888;
             }
-            .review-actions button.view {
-                background-color: #007bff;
-            }
+           
         `;
         document.head.appendChild(style);
     }
@@ -90,7 +88,6 @@ async function viewReviews() {
             <td class="review-actions">
                 <button class="delete" onclick="deleteReview('${review.id}')">Delete</button>
                 <button class="edit" onclick="editReview('${review.id}')">Update</button>
-                <button class="view" onclick="viewReview('${review.id}')">View</button>
             </td>
         </tr>
     `).join('');
