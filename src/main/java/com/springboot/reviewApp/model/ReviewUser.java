@@ -31,6 +31,21 @@ public class ReviewUser {
     @NotBlank(message = "ZipCode cannot be empty")
     private String zipCode;
 
+    @NotBlank(message = "Email cannot be empty")
+    private String email;
+
+    // Email verification
+    private Boolean emailVerified = false;
+    private String emailVerificationToken;
+
+    // Password recovery
+    private String passwordResetToken;
+    private java.time.LocalDateTime passwordResetTokenExpiry;
+
+    // 2FA (TOTP secret for apps like Google Authenticator)
+    private Boolean twoFactorEnabled = false;
+    private String twoFactorSecret;
+
     private Boolean peanutAllergies;
     private Boolean eggAllergies;
     private Boolean dairyAllergies;
