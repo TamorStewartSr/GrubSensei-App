@@ -30,7 +30,6 @@ public class ReviewUser {
     private String state;
     @NotBlank(message = "ZipCode cannot be empty")
     private String zipCode;
-
     @NotBlank(message = "Email cannot be empty")
     private String email;
 
