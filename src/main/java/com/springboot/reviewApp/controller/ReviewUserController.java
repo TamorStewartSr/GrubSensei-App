@@ -164,4 +164,15 @@ public class ReviewUserController {
         }
     }
 
+    //New Email verification method
+    @GetMapping("/reviewUsers/verify-email")
+    public ResponseEntity<String> verifyEmail(@RequestParam String token) {
+        return reviewUserRepository.findByEmailVerificationToken(token).map(reviewUser -> {
+            reviewUser.setEmailVerified(true);
+            reviewUser.setEmailVerificationToken(null);// clears token
+            reviewUserRepository.save(reviewUser);
+            return ResponseEntity.ok("Email verified successfully!");
+        }).orElse(ResponseEntity.badRequest().body("Invalid or expired token"));
+    }
+
 }
