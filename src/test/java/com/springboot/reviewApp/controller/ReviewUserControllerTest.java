@@ -113,4 +113,37 @@ public class ReviewUserControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
         assertEquals("Invalid username or password", exception.getReason());
     }
+
+    @Test
+    public void testVerifyEmail_Success() {
+        String token = "valid-token";
+        ReviewUser mockUser = new ReviewUser();
+        mockUser.setEmailVerificationToken(token);
+        mockUser.setEmailVerified(false);
+
+        when(reviewUserRepository.findByEmailVerificationToken(token))
+                .thenReturn(Optional.of(mockUser));
+
+        ResponseEntity<String> response = reviewUserController.verifyEmail(token);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("Email verified successfully!", response.getBody());
+        assertTrue(mockUser.getEmailVerified()); // Should now be true
+        assertNull(mockUser.getEmailVerificationToken()); // Should be cleared
+        verify(reviewUserRepository, times(1)).save(mockUser);
+    }
+
+    @Test
+    public void testVerifyEmail_InvalidToken() {
+        String token = "invalid-token";
+
+        when(reviewUserRepository.findByEmailVerificationToken(token))
+                .thenReturn(Optional.empty());
+
+        ResponseEntity<String> response = reviewUserController.verifyEmail(token);
+
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("Invalid or expired token", response.getBody());
+        verify(reviewUserRepository, never()).save(any(ReviewUser.class));
+    }
 }
