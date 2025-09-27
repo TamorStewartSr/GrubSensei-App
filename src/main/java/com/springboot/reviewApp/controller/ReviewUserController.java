@@ -138,18 +138,44 @@ public class ReviewUserController {
         }
     }
 
+    // Testing this new login method
     @PostMapping("/login")
-    public ReviewUser login(@RequestBody @NonNull ReviewUser loginRequest) {
-        Optional<ReviewUser> optionalUser = reviewUserRepository.findByDisplayNameAndPassword(loginRequest.getDisplayName(), loginRequest.getPassword());
+    public UserDTO login(@RequestBody ReviewUser loginRequest) {
+        Optional<ReviewUser> optionalUser = reviewUserRepository.findUserByDisplayName(loginRequest.getDisplayName());
 
         if (optionalUser.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid username or password");
         }
 
         ReviewUser user = optionalUser.get();
-        user.setPassword(null); // Hide password before returning
-        return user;
+
+        // TODO: replace with passwordEncoder.matches(...) once you hash passwords
+        if (!user.getPassword().equals(loginRequest.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid username or password");
+        }
+
+        return new UserDTO(
+                user.getDisplayName(),
+                user.getCity(),
+                user.getState(),
+                user.getZipCode()
+        );
     }
+
+
+// The original login method
+//    @PostMapping("/login")
+//    public ReviewUser login(@RequestBody @NonNull ReviewUser loginRequest) {
+//        Optional<ReviewUser> optionalUser = reviewUserRepository.findByDisplayNameAndPassword(loginRequest.getDisplayName(), loginRequest.getPassword());
+//
+//        if (optionalUser.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid username or password");
+//        }
+//
+//        ReviewUser user = optionalUser.get();
+//        user.setPassword(null); // Hide password before returning
+//        return user;
+//    }
 
     @DeleteMapping("/{id}")
     public ReviewUser delete(@PathVariable Long id) {
