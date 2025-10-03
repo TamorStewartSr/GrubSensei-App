@@ -1,5 +1,6 @@
 package com.springboot.reviewApp.controller;
 
+import com.springboot.reviewApp.dto.LoginDTO;
 import com.springboot.reviewApp.dto.UserDTO;
 import com.springboot.reviewApp.model.ReviewUser;
 import com.springboot.reviewApp.repository.ReviewUserRepository;
@@ -140,17 +141,12 @@ public class ReviewUserController {
 
     // Testing this new login method
     @PostMapping("/login")
-    public UserDTO login(@RequestBody ReviewUser loginRequest) {
-        Optional<ReviewUser> optionalUser = reviewUserRepository.findUserByDisplayName(loginRequest.getDisplayName());
+    public UserDTO login(@RequestBody LoginDTO loginRequest) {
+        ReviewUser user = reviewUserRepository.findUserByDisplayName(loginRequest.displayName())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid username or password"));
 
-        if (optionalUser.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid username or password");
-        }
-
-        ReviewUser user = optionalUser.get();
-
-        // TODO: replace with passwordEncoder.matches(...) once you hash passwords
-        if (!user.getPassword().equals(loginRequest.getPassword())) {
+        // Replace with passwordEncoder.matches(...) once you hash passwords
+        if (!user.getPassword().equals(loginRequest.password())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid username or password");
         }
 
@@ -161,6 +157,7 @@ public class ReviewUserController {
                 user.getZipCode()
         );
     }
+
 
 
 // The original login method
