@@ -81,6 +81,7 @@ async function handleSignUp() {
     //Collect form data
     const userDetails = {
         displayName: document.getElementById('displayName').value.trim(),
+        email: document.getElementById('email').value.trim(),//New email field
         password: document.getElementById('password').value.trim(),
         city: document.getElementById('city').value.trim(),
         state: document.getElementById('state').value.trim(),
